@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="mainFrame">
+  <grid id="27dc6" binding="myPanel" layout-manager="GridLayoutManager" row-count="9" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="823" height="641"/>
+    </constraints>
+    <properties>
+      <background color="-12827836"/>
+      <foreground color="-12827836"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="93c91" class="javax.swing.JButton" binding="settings">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12827836"/>
+          <icon value="newSettings.jpeg"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="1dcb0" class="javax.swing.JButton" binding="profile">
+        <constraints>
+          <grid row="0" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12827836"/>
+          <icon value="newprofile.jpeg"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <hspacer id="9edb8">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="ec923">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="117" height="11"/>
+          </grid>
+        </constraints>
+      </hspacer>
+      <component id="86b2" class="javax.swing.JFormattedTextField" binding="blacklineFormattedTextField" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-6381922"/>
+          <text value="     "/>
+        </properties>
+      </component>
+      <component id="98482" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-256"/>
+          <text value="Number Of People"/>
+        </properties>
+      </component>
+      <component id="61603" class="javax.swing.JButton" binding="previous">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12827836"/>
+          <icon value="left.jpeg"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <grid id="bfeec" binding="infoPanel1" layout-manager="CardLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-3996672"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="5016e" binding="infoPanel2" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <card name="Card1"/>
+            </constraints>
+            <properties>
+              <background color="-9871759"/>
+            </properties>
+            <border type="bevel-lowered"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <component id="9db33" class="javax.swing.JSpinner" binding="spinner1" default-binding="true">
+        <constraints>
+          <grid row="5" column="2" row-span="2" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="1e76f" class="javax.swing.JFormattedTextField" default-binding="true">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-6381922"/>
+          <text value="     "/>
+        </properties>
+      </component>
+      <component id="b066e" class="javax.swing.JToggleButton" binding="toggleSound">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12827836"/>
+          <foreground color="-12827836"/>
+          <icon value="sound.jpeg"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="ddaa0" class="javax.swing.JLabel" binding="soundLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="2" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-16721409"/>
+          <text value="Off"/>
+        </properties>
+      </component>
+      <component id="a6a4" class="javax.swing.JLabel" binding="lightLabel">
+        <constraints>
+          <grid row="3" column="2" row-span="2" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-16721409"/>
+          <text value="Off"/>
+        </properties>
+      </component>
+      <component id="e8117" class="javax.swing.JToggleButton" binding="toggleLight">
+        <constraints>
+          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12827836"/>
+          <foreground color="-12827836"/>
+          <icon value="lightsNew.jpeg"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <hspacer id="e6a69">
+        <constraints>
+          <grid row="8" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="87ccd" class="javax.swing.JButton" binding="next">
+        <constraints>
+          <grid row="8" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12827836"/>
+          <icon value="Facebook Post 940x788 px (7).jpeg"/>
+          <selectedIcon value="icons8-next-page-48.png"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="ea44a" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <icon value="BEYOND.png"/>
+          <text value=""/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
