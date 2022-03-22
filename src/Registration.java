@@ -1,8 +1,18 @@
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+
+
 
 public class Registration extends JFrame implements ActionListener {
     JFrame frame;
@@ -23,6 +33,7 @@ public class Registration extends JFrame implements ActionListener {
     JTextField emailTextField = new JTextField();
     JButton registerButton = new JButton("CONFIRM");
     JButton resetButton = new JButton("RESET");
+    JButton backButton = new JButton("BACK");
 
 
     Registration() {
@@ -72,6 +83,9 @@ public class Registration extends JFrame implements ActionListener {
         resetButton.setBackground(Color.darkGray);
         resetButton.setForeground(Color.cyan);
         resetButton.setBounds(220, y + 400, 100, 35);
+        backButton.setBounds(120, 450, 100, 30);
+        backButton.setForeground(Color.CYAN);
+        backButton.setBackground(Color.darkGray);
 
 
     }
@@ -93,45 +107,76 @@ public class Registration extends JFrame implements ActionListener {
         frame.add(emailTextField);
         frame.add(registerButton);
         frame.add(resetButton);
+        frame.add(backButton);
     }
 
     public void actionEvent() {
         registerButton.addActionListener(this);
         resetButton.addActionListener(this);
+        backButton.addActionListener(this);
+    }
+
+    public String makeGETRequest(String urlName){
+        BufferedReader rd = null;
+        StringBuilder sb = null;
+        String line = null;
+        try {
+            URL url = new URL(urlName);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            sb = new StringBuilder();
+            while ((line = rd.readLine()) != null)
+            {
+                sb.append(line + '\n');
+            }
+            conn.disconnect();
+            return sb.toString();
+        }
+        catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+        catch (ProtocolException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return "";
+
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == registerButton) {
-            try {
-                //Creating Connection Object
-                Connection connection = DriverManager.getConnection("https://studev.groept.be/api/a21ib2d04/users");
-                //Preapared Statement
-                PreparedStatement Pstatement = connection.prepareStatement("insert into student values(?,?,?,?,?,?,?)");
-                //Specifying the values of it's parameter
-                Pstatement.setString(1, nameTextField.getText());
-                Pstatement.setString(2, genderComboBox.getSelectedItem().toString());
-                Pstatement.setString(3, familyTextField.getText());
-                Pstatement.setString(4, passwordField.getText());
-                Pstatement.setString(5, confirmPasswordField.getText());
-                Pstatement.setString(6, cityTextField.getText());
-                Pstatement.setString(7, emailTextField.getText());
-                //Checking for the Password match
+                String name = nameTextField.getText();
+                String family = familyTextField.getText();
+                String gender = genderComboBox.getSelectedItem().toString();
+                String password = passwordField.getText();
+                String confirmpassword = confirmPasswordField.getText();
+                String country = cityTextField.getText();
+                String email = emailTextField.getText();
+
                 if (passwordField.getText().equalsIgnoreCase(confirmPasswordField.getText())) {
-                    //Executing query
-                    Pstatement.executeUpdate();
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/user_input/"+name+"/"+family+"/"+gender+"/"+password+"/"+confirmpassword+"/"+country+"/"+email );
                     JOptionPane.showMessageDialog(null, "Data Registered Successfully");
                 } else {
                     JOptionPane.showMessageDialog(null, "password did not match");
                 }
 
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-
 
         }
+
+        if (e.getSource() == backButton) {
+            JFrame choice = new loginChoiceFrame("main");
+            choice.setVisible(true);
+            choice.setSize(1000,800);
+            choice.setBounds(10, 10, 370, 600);
+            dispose();
+        }
+
         if (e.getSource() == resetButton) {
             //Clearing Fields
             nameTextField.setText("");
