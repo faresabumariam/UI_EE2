@@ -23,7 +23,7 @@ public class mainFrame extends JFrame
     private JButton next;
     private JPanel infoPanel1;
     private JPanel infoPanel2;
-    private JSpinner spinner1;
+    private JSpinner numberOfPeople;
     private JToggleButton toggleLight;
     private JToggleButton toggleSound;
     private JLabel soundLabel;
@@ -81,15 +81,13 @@ public class mainFrame extends JFrame
                 if(toggleLight.isSelected())
                 {
                     lightLabel.setText("On");
-                    String on = String.valueOf(1);
-                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/"+on );
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/"+"1" );
 
                 }
                 else
                 {
                     lightLabel.setText("Off");
-                    String off = String.valueOf(0);
-                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/"+off );
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/"+"0" );
                 }
             }
         });
@@ -100,13 +98,19 @@ public class mainFrame extends JFrame
                 if(toggleSound.isSelected())
                 {
                     soundLabel.setText("On");
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundButton_input/"+"1" );
+
                 }
                 else
                 {
                     soundLabel.setText("Off");
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundButton_input/"+"0" );
+
                 }
             }
         });
+
+
     }
 
 

@@ -86,6 +86,7 @@ public class Registration extends JFrame implements ActionListener {
         backButton.setBounds(120, 450, 100, 30);
         backButton.setForeground(Color.CYAN);
         backButton.setBackground(Color.darkGray);
+        emailTextField.setToolTipText("Please enter an email which was not used before");
 
 
     }
@@ -159,12 +160,13 @@ public class Registration extends JFrame implements ActionListener {
                 String country = cityTextField.getText();
                 String email = emailTextField.getText();
 
-                if (passwordField.getText().equalsIgnoreCase(confirmPasswordField.getText())) {
-                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/user_input/"+name+"/"+family+"/"+gender+"/"+password+"/"+confirmpassword+"/"+country+"/"+email );
-                    JOptionPane.showMessageDialog(null, "Data Registered Successfully");
-                } else {
-                    JOptionPane.showMessageDialog(null, "password did not match");
-                }
+                    if (passwordField.getText().equalsIgnoreCase(confirmPasswordField.getText())) {
+                        makeGETRequest("https://studev.groept.be/api/a21ib2d04/user_input/" + name + "/" + family + "/" + gender + "/" + password + "/" + confirmpassword + "/" + country + "/" + email);
+                        JOptionPane.showMessageDialog(null, "Data Registered Successfully, please go to login page");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "password did not match");
+                    }
+
 
 
         }
