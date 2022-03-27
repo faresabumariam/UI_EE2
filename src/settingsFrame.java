@@ -130,7 +130,7 @@ public class settingsFrame extends JFrame {
                 }
                 else if(r == 2){
                     makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(2));
-                    song.setText("LondenBridge");
+                    song.setText("LondonBridge");
                     counter = 2;
                 }
                 else if(r == 3){
