@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Random;
 
 public class settingsFrame extends JFrame {
     private JButton backButton;
@@ -25,6 +26,7 @@ public class settingsFrame extends JFrame {
     private JButton Previous;
     private JButton Next;
     private JLabel songLabel;
+    private JButton shuffleButton;
     private int value1;
     private int value2;
     private int counter = 1;
@@ -109,6 +111,37 @@ public class settingsFrame extends JFrame {
                         makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(4));
                         song.setText("Manaderna");
                     }
+                }
+            }
+        });
+
+        shuffleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random random = new Random();
+                int r = 0;
+                while(r == 0 || r == counter)
+                    r = random.nextInt(5);
+
+                if(r == 1){
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(1));
+                    song.setText("Star Wars");
+                    counter = 1;
+                }
+                else if(r == 2){
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(2));
+                    song.setText("LondenBridge");
+                    counter = 2;
+                }
+                else if(r == 3){
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(3));
+                    song.setText("Twinkle Twinkle");
+                    counter = 3;
+                }
+                else {
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(4));
+                    song.setText("Manaderna");
+                    counter = 4;
                 }
             }
         });
