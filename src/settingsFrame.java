@@ -21,13 +21,17 @@ public class settingsFrame extends JFrame {
     private JLabel sound;
     private JSlider slider1;
     private JSlider slider2;
+    private JLabel song;
+    private JButton Previous;
+    private JButton Next;
+    private JLabel songLabel;
     private int value1;
     private int value2;
+    private int counter = 1;
 
-    public settingsFrame(String title)
-    {
+    public settingsFrame(String title) {
         super(title);
-        setSize(500,400);
+        setSize(600, 400);
         setContentPane(settingsPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -35,14 +39,14 @@ public class settingsFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 dispose();
-            };
+            }
         });
 
         slider2.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 value1 = slider2.getValue();
-                makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/"+ String.valueOf(value1));
+                makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/" + String.valueOf(value1));
             }
         });
 
@@ -50,13 +54,68 @@ public class settingsFrame extends JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
                 value2 = slider1.getValue();
-                makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundButton_input/"+ String.valueOf(value2));
+                makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundButton_input/" + String.valueOf(value2));
             }
         });
 
+        Previous.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                song.setText("Star Wars");
+                if(counter > 1 ){
+                    if(counter == 2){
+                        makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(1));
+                        song.setText("Star Wars");
+                        counter--;
+                    }
+                    else if(counter == 3){
+                        makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(2));
+                        song.setText("LondenBridge");
+                        counter--;
+                    }
+                    else if(counter == 4){
+                        makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(3));
+                        song.setText("Twinkle Twinkle");
+                        counter--;
+                    }
+                else {
+                        makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(1));
+                        song.setText("Star Wars");
+                    }
+                }
+            }
+        });
+
+        Next.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(counter < 4){
+                    if(counter == 1){
+                        makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(2));
+                        song.setText("LondenBridge");
+                        counter++;
+                    }
+                    else if(counter == 2){
+                        makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(3));
+                        song.setText("Twinkle Twinkle");
+                        counter++;
+                    }
+                    else if(counter == 3){
+                        makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(4));
+                        song.setText("Manaderna");
+                        counter++;
+                    }
+                else {
+                        makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(4));
+                        song.setText("Manaderna");
+                    }
+                }
+            }
+        });
     }
 
-    public String makeGETRequest(String urlName){
+
+    public String makeGETRequest(String urlName) {
         BufferedReader rd = null;
         StringBuilder sb = null;
         String line = null;
@@ -67,31 +126,22 @@ public class settingsFrame extends JFrame {
             conn.connect();
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             sb = new StringBuilder();
-            while ((line = rd.readLine()) != null)
-            {
+            while ((line = rd.readLine()) != null) {
                 sb.append(line + '\n');
             }
             conn.disconnect();
             return sb.toString();
-        }
-        catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
-        catch (ProtocolException e){
+        } catch (ProtocolException e) {
             e.printStackTrace();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return "";
 
     }
-
-
-
-
 }
-
 
 
 
