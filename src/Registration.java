@@ -1,9 +1,7 @@
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,7 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-
 
 
 public class Registration extends JFrame implements ActionListener {
@@ -33,7 +30,7 @@ public class Registration extends JFrame implements ActionListener {
     JTextField emailTextField = new JTextField();
     JButton registerButton = new JButton("CONFIRM");
     JButton resetButton = new JButton("RESET");
-    JButton backButton = new JButton("BACK");
+    JButton backButton = new JButton("LOGIN");
 
 
     Registration() {
@@ -83,7 +80,7 @@ public class Registration extends JFrame implements ActionListener {
         resetButton.setBackground(Color.darkGray);
         resetButton.setForeground(Color.cyan);
         resetButton.setBounds(220, y + 400, 100, 35);
-        backButton.setBounds(120, 450, 100, 30);
+        backButton.setBounds(140, 450, 100, 30);
         backButton.setForeground(Color.CYAN);
         backButton.setBackground(Color.darkGray);
         emailTextField.setToolTipText("Please enter an email which was not used before");
@@ -159,11 +156,18 @@ public class Registration extends JFrame implements ActionListener {
                 String confirmpassword = confirmPasswordField.getText();
                 String country = cityTextField.getText();
                 String email = emailTextField.getText();
+                String usernameDB = makeGETRequest("https://studev.groept.be/api/a21ib2d04/check_email/"+email+"/"+password);
 
-                    if (passwordField.getText().equalsIgnoreCase(confirmPasswordField.getText())) {
+                if (usernameDB.charAt(1)!=']')
+                {
+                    JOptionPane.showMessageDialog(null, "Email already used, please choose another one ");
+
+                }
+                 else if (passwordField.getText().equalsIgnoreCase(confirmPasswordField.getText())) {
                         makeGETRequest("https://studev.groept.be/api/a21ib2d04/user_input/" + name + "/" + family + "/" + gender + "/" + password + "/" + confirmpassword + "/" + country + "/" + email);
                         JOptionPane.showMessageDialog(null, "Data Registered Successfully, please go to login page");
-                    } else {
+                    }
+                 else {
                         JOptionPane.showMessageDialog(null, "password did not match");
                     }
 
@@ -172,11 +176,17 @@ public class Registration extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == backButton) {
-            JFrame choice = new loginChoiceFrame("main");
-            choice.setVisible(true);
-            choice.setSize(1000,800);
-            choice.setBounds(10, 10, 370, 600);
-            dispose();
+//            JFrame choice = new loginChoiceFrame("main");
+//            choice.setVisible(true);
+//            choice.setSize(1000,800);
+//            choice.setBounds(10, 10, 370, 600);
+//            this.dispose();
+
+            JFrame login = new LoginFrame();
+            login.setVisible(true);
+            login.setBounds(10, 10, 370, 600);
+            frame.dispose();
+
         }
 
         if (e.getSource() == resetButton) {

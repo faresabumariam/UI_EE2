@@ -30,8 +30,8 @@ public class loginChoiceFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame signup = new Registration();
-                signup.setVisible(true);
-                signup.setBounds(10, 10, 370, 600);
+//                signup.setVisible(true);
+//                signup.setBounds(10, 10, 370, 600);
                 dispose();
             }
         });

@@ -2,6 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import org.json.*;
 
 public class LoginFrame extends JFrame implements ActionListener {
 
@@ -80,8 +88,14 @@ public class LoginFrame extends JFrame implements ActionListener {
             String pwdText;
             userText = userTextField.getText();
             pwdText = passwordField.getText();
-            if (userText.equalsIgnoreCase("4D") && pwdText.equalsIgnoreCase("4D")) {
+
+            String usernameDB = makeGETRequest("https://studev.groept.be/api/a21ib2d04/check_email/"+userText+"/"+pwdText);
+            System.out.println(parseJSON(usernameDB,"name"));
+
+            if(usernameDB.charAt(1)!=']') {
                 JOptionPane.showMessageDialog(this, "Login Successful");
+
+                makeGETRequest("https://studev.groept.be/api/a21ib2d04/inputLastUser/"+parseJSON(usernameDB,"name")+"/"+parseJSON(usernameDB,"familyname")+"/"+parseJSON(usernameDB,"gender")+"/"+parseJSON(usernameDB,"email")+"/"+parseJSON(usernameDB,"country"));
                 JFrame mainFrame = new mainFrame("main");
                 mainFrame.setVisible(true);
                 mainFrame.pack();
@@ -116,7 +130,56 @@ public class LoginFrame extends JFrame implements ActionListener {
 
 
         }
+
     }
+
+    public String makeGETRequest(String urlName){
+        BufferedReader rd = null;
+        StringBuilder sb = null;
+        String line = null;
+        try {
+            URL url = new URL(urlName);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            sb = new StringBuilder();
+            while ((line = rd.readLine()) != null)
+            {
+                sb.append(line + '\n');
+            }
+            conn.disconnect();
+            return sb.toString();
+        }
+        catch (MalformedURLException e){
+            e.printStackTrace();
+        }
+        catch (ProtocolException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return "";
+
+    }
+
+    public String parseJSON(String jsonString, String key){
+        String var = "";
+        try {
+            JSONArray array = new JSONArray(jsonString);
+            for (int i = 0; i < array.length(); i++)
+            {
+                JSONObject curObject = array.getJSONObject(i);
+                var+=curObject.getString(key);
+            }}
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        return var;
+    }
+
 
     public static void main(String[] a) {
         LoginFrame frame = new LoginFrame();
