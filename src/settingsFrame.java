@@ -94,7 +94,7 @@ public class settingsFrame extends JFrame {
                 if(counter < 4){
                     if(counter == 1){
                         makeGETRequest("https://studev.groept.be/api/a21ib2d04/songButton_input/" + String.valueOf(2));
-                        song.setText("LondenBridge");
+                        song.setText("LondonBridge");
                         counter++;
                     }
                     else if(counter == 2){

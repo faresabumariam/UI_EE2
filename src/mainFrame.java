@@ -81,13 +81,13 @@ public class mainFrame extends JFrame
                 if(toggleLight.isSelected())
                 {
                     lightLabel.setText("On");
-                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/"+"1" );
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightControl_input/"+"1" );
 
                 }
                 else
                 {
                     lightLabel.setText("Off");
-                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/"+"0" );
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightControl_input/"+"0" );
                 }
             }
         });
@@ -98,13 +98,13 @@ public class mainFrame extends JFrame
                 if(toggleSound.isSelected())
                 {
                     soundLabel.setText("On");
-                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundButton_input/"+"1" );
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundControl_input/"+"1" );
 
                 }
                 else
                 {
                     soundLabel.setText("Off");
-                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundButton_input/"+"0" );
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundControl_input/"+"0" );
 
                 }
             }
