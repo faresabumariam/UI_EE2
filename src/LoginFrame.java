@@ -14,7 +14,7 @@ import org.json.*;
 public class LoginFrame extends JFrame implements ActionListener {
 
     Container container = getContentPane();
-    JLabel userLabel = new JLabel("USERNAME");
+    JLabel userLabel = new JLabel("EMAIL");
     JLabel passwordLabel = new JLabel("PASSWORD");
     JTextField userTextField = new JTextField();
     JPasswordField passwordField = new JPasswordField();

@@ -13,7 +13,7 @@ import java.net.URL;
 
 public class Registration extends JFrame implements ActionListener {
     JFrame frame;
-    String[] gender = {"Male", "Female"};
+    String[] gender = {"Male", "Female","Non-Binary","Transgender","Other", "I prefer not to say"};
     JLabel nameLabel = new JLabel("NAME");
     JLabel genderLabel = new JLabel("GENDER");
     JLabel fatherNameLabel = new JLabel("FAMILY");
@@ -176,12 +176,6 @@ public class Registration extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == backButton) {
-//            JFrame choice = new loginChoiceFrame("main");
-//            choice.setVisible(true);
-//            choice.setSize(1000,800);
-//            choice.setBounds(10, 10, 370, 600);
-//            this.dispose();
-
             JFrame login = new LoginFrame();
             login.setVisible(true);
             login.setBounds(10, 10, 370, 600);

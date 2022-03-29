@@ -25,7 +25,6 @@ public class HistogramFrame extends JFrame
     private int barGap = 10;
     private JPanel barPanel;
     private JPanel labelPanel;
-    private JButton backButton;
     private List<Bar> bars = new ArrayList<Bar>();
 
 
@@ -45,27 +44,12 @@ public class HistogramFrame extends JFrame
         labelPanel.setBorder( new EmptyBorder(5, 10, 0, 10) );
         labelPanel.setBackground(Color.darkGray);
 
-        backButton = new JButton("BACK");
-        backButton.setBackground(Color.DARK_GRAY);
-
-        backButton.setForeground(Color.white);
 
         add(barPanel, BorderLayout.NORTH);
-        add(labelPanel, BorderLayout.CENTER);
-        add(backButton,BorderLayout.AFTER_LAST_LINE);
+        add(labelPanel, BorderLayout.AFTER_LAST_LINE);
 
         this.createAndShowGUI();
 
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFrame main = new mainFrame("main");
-                main.setVisible(true);
-
-
-
-            }
-        });
     }
 
     public void addHistogramColumn(String label, int value, Color color)
@@ -91,7 +75,7 @@ public class HistogramFrame extends JFrame
             label.setHorizontalAlignment(JLabel.CENTER);
             label.setVerticalTextPosition(JLabel.TOP);
             label.setVerticalAlignment(JLabel.BOTTOM);
-            label.setForeground(Color.white);
+            label.setForeground(Color.darkGray);
             int barHeight = (bar.getValue() * histogramHeight) / maxValue;
             Icon icon = new ColorIcon(bar.getColor(), barWidth, barHeight);
             label.setIcon( icon );
@@ -99,7 +83,7 @@ public class HistogramFrame extends JFrame
 
             JLabel barLabel = new JLabel( bar.getLabel() );
             barLabel.setHorizontalAlignment(JLabel.CENTER);
-            barLabel.setForeground(Color.white);
+            barLabel.setForeground(Color.WHITE);
             labelPanel.add( barLabel );
 
         }
@@ -209,7 +193,7 @@ public class HistogramFrame extends JFrame
 
 
         JFrame frame = new JFrame("Histogram Panel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(panel);
         frame.setLocationByPlatform(true);
         frame.pack();
@@ -219,13 +203,13 @@ public class HistogramFrame extends JFrame
     public static void main(String[] args)
     {
 
-//        EventQueue.invokeLater(new Runnable()
-//        {
-//            public void run()
-//            {
-////                createAndShowGUI();
-//            }
-//        });
+        EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+//                createAndShowGUI();
+            }
+        });
 
     }
 

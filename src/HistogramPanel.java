@@ -25,7 +25,6 @@ public class HistogramPanel extends JPanel
     private int barGap = 10;
     private JPanel barPanel;
     private JPanel labelPanel;
-    private JButton backButton;
     private List<Bar> bars = new ArrayList<Bar>();
 
 
@@ -45,13 +44,11 @@ public class HistogramPanel extends JPanel
         labelPanel.setBorder( new EmptyBorder(5, 10, 0, 10) );
         labelPanel.setBackground(Color.darkGray);
 
-        backButton = new JButton("BACK");
-        backButton.setBackground(Color.DARK_GRAY);
-        backButton.setForeground(Color.white);
+
 
         add(barPanel, BorderLayout.NORTH);
         add(labelPanel, BorderLayout.CENTER);
-        add(backButton,BorderLayout.AFTER_LAST_LINE);
+
     }
 
     public void addHistogramColumn(String label, int value, Color color)
@@ -77,7 +74,7 @@ public class HistogramPanel extends JPanel
             label.setHorizontalAlignment(JLabel.CENTER);
             label.setVerticalTextPosition(JLabel.TOP);
             label.setVerticalAlignment(JLabel.BOTTOM);
-            label.setForeground(Color.white);
+            label.setForeground(Color.darkGray);
             int barHeight = (bar.getValue() * histogramHeight) / maxValue;
             Icon icon = new ColorIcon(bar.getColor(), barWidth, barHeight);
             label.setIcon( icon );

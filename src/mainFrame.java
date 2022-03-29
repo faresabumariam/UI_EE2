@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -38,7 +39,6 @@ public class mainFrame extends JFrame
     private JLabel lightLabel;
     private JPanel statsPanel;
     private JButton Histogram;
-    private JButton xyplot;
     private JLabel statsSlider;
     private JLabel statsLabel;
     int i = 0;
@@ -73,9 +73,9 @@ public class mainFrame extends JFrame
         histogram= new JButton("Hist");
 
         ArrayList<String> stats = new ArrayList<>();
-        stats.add("stat 1");
-        stats.add("stat 2");
-        stats.add("stat 3");
+        stats.add("You spend most of your time in zone: ");
+        stats.add("You saved: "+"euros");
+        stats.add("You have not left your room in: sec, touch some grass!");
 
 //        statsLabel.setText(stats.get(0));
 //        statsLabel.repaint();
@@ -158,6 +158,8 @@ public class mainFrame extends JFrame
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 JFrame hist = new HistogramFrame();
+                hist.repaint();
+                hist.validate();
             }
         });
     }
