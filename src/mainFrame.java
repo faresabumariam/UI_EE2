@@ -30,7 +30,8 @@ public class mainFrame extends JFrame
     private JButton next;
     private JPanel infoPanel1;
     private JPanel infoPanel2;
-    private JSpinner numberOfPeople;
+    SpinnerModel nP = new SpinnerNumberModel(5,0,20,1);
+    private JSpinner numberOfPeople = new JSpinner(nP);
     private JToggleButton toggleLight;
     private JToggleButton toggleSound;
     private JLabel soundLabel;
@@ -38,9 +39,11 @@ public class mainFrame extends JFrame
     private JPanel statsPanel;
     private JButton Histogram;
     private JButton xyplot;
+    private JLabel statsSlider;
     private JLabel statsLabel;
     int i = 0;
     private JButton histogram;
+
 
 
     public mainFrame(String title) {
@@ -55,6 +58,7 @@ public class mainFrame extends JFrame
             public void actionPerformed(ActionEvent actionEvent) {
                 JFrame settingsFrame = new settingsFrame("settings");
                 settingsFrame.setVisible(true);
+
             }
         });
 
@@ -69,9 +73,9 @@ public class mainFrame extends JFrame
         histogram= new JButton("Hist");
 
         ArrayList<String> stats = new ArrayList<>();
+        stats.add("stat 1");
         stats.add("stat 2");
         stats.add("stat 3");
-        stats.add("stat 4");
 
 //        statsLabel.setText(stats.get(0));
 //        statsLabel.repaint();
@@ -81,15 +85,15 @@ public class mainFrame extends JFrame
             @Override
             public void actionPerformed(ActionEvent e) {
 
-//                System.out.println(stats.get(i));
-//
-//                if(i!=stats.size()-1){
-//                    i++;
-//                }
-//                else{
-//                    i=0;
-//                }
-//                statsLabel.setText(stats.get(i));
+                System.out.println(stats.get(i));
+
+                if(i!=stats.size()-1){
+                    i++;
+                }
+                else{
+                    i=0;
+                }
+                statsSlider.setText(stats.get(i));
 //                statsLabel.repaint();
 //                statsLabel.validate();
 
@@ -99,17 +103,17 @@ public class mainFrame extends JFrame
         previous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-//                if(i!=0){
-//                    i--;
-//                }
-//                else{
-//                    i=stats.size()-1;
-//                }
-//
-//                statsLabel.setText(stats.get(i));
+                if(i!=0){
+                    i--;
+                }
+                else{
+                    i=stats.size()-1;
+                }
+
+                statsSlider.setText(stats.get(i));
 //                statsLabel.repaint();
 //                statsLabel.validate();
-//                i = (i>stats.size()-1)? 0 : i;
+                i = (i>stats.size()-1)? 0 : i;
 
             }
         });
@@ -154,9 +158,6 @@ public class mainFrame extends JFrame
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 JFrame hist = new HistogramFrame();
-                hist.setVisible(true);
-                hist.setBounds(10,10,500,400);
-
             }
         });
     }

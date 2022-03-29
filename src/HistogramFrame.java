@@ -47,12 +47,25 @@ public class HistogramFrame extends JFrame
 
         backButton = new JButton("BACK");
         backButton.setBackground(Color.DARK_GRAY);
+
         backButton.setForeground(Color.white);
 
         add(barPanel, BorderLayout.NORTH);
         add(labelPanel, BorderLayout.CENTER);
         add(backButton,BorderLayout.AFTER_LAST_LINE);
 
+        this.createAndShowGUI();
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame main = new mainFrame("main");
+                main.setVisible(true);
+
+
+
+            }
+        });
     }
 
     public void addHistogramColumn(String label, int value, Color color)
@@ -88,6 +101,7 @@ public class HistogramFrame extends JFrame
             barLabel.setHorizontalAlignment(JLabel.CENTER);
             barLabel.setForeground(Color.white);
             labelPanel.add( barLabel );
+
         }
     }
 
@@ -119,6 +133,7 @@ public class HistogramFrame extends JFrame
             return color;
         }
     }
+
 
     private class ColorIcon implements Icon
     {
@@ -157,38 +172,37 @@ public class HistogramFrame extends JFrame
 
 
 
-    private static void createAndShowGUI()
-    {
+    private void createAndShowGUI() {
         HistogramPanel panel = new HistogramPanel();
 
-        String zone1 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/"+"1");
-        String z1 = panel.parseJSON(zone1,"countZone");
-        String zone2 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/"+"2");
-        String z2 = panel.parseJSON(zone2,"countZone");
-        String zone3 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/"+"3");
-        String z3 = panel.parseJSON(zone3,"countZone");
-        String zone4 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/"+"4");
-        String z4 = panel.parseJSON(zone4,"countZone");
-        String zone5 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/"+"5");
-        String z5 = panel.parseJSON(zone5,"countZone");
-        String zone6 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/"+"6");
-        String z6 = panel.parseJSON(zone6,"countZone");
-        String zone7 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/"+"7");
-        String z7 = panel.parseJSON(zone7,"countZone");
-        String zone8 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/"+"8");
-        String z8 = panel.parseJSON(zone8,"countZone");
-        String zone9 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/"+"9");
-        String z9 = panel.parseJSON(zone9,"countZone");
+        String zone1 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/" + "1");
+        String z1 = panel.parseJSON(zone1, "countZone");
+        String zone2 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/" + "2");
+        String z2 = panel.parseJSON(zone2, "countZone");
+        String zone3 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/" + "3");
+        String z3 = panel.parseJSON(zone3, "countZone");
+        String zone4 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/" + "4");
+        String z4 = panel.parseJSON(zone4, "countZone");
+        String zone5 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/" + "5");
+        String z5 = panel.parseJSON(zone5, "countZone");
+        String zone6 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/" + "6");
+        String z6 = panel.parseJSON(zone6, "countZone");
+        String zone7 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/" + "7");
+        String z7 = panel.parseJSON(zone7, "countZone");
+        String zone8 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/" + "8");
+        String z8 = panel.parseJSON(zone8, "countZone");
+        String zone9 = panel.makeGETRequest("https://studev.groept.be/api/a21ib2d04/statsSection/" + "9");
+        String z9 = panel.parseJSON(zone9, "countZone");
 
         panel.addHistogramColumn("Zone 1", Integer.parseInt(z1), Color.cyan);
-        panel.addHistogramColumn("Zone 2",Integer.parseInt(z2) , Color.YELLOW);
+        panel.addHistogramColumn("Zone 2", Integer.parseInt(z2), Color.YELLOW);
         panel.addHistogramColumn("Zone 3", Integer.parseInt(z3), Color.cyan);
         panel.addHistogramColumn("Zone 4", Integer.parseInt(z4), Color.yellow);
         panel.addHistogramColumn("Zone 5", Integer.parseInt(z5), Color.cyan);
         panel.addHistogramColumn("Zone 6", Integer.parseInt(z6), Color.yellow);
-        panel.addHistogramColumn("Zone 7", Integer.parseInt(z7),Color.CYAN);
-        panel.addHistogramColumn("Zone 8", Integer.parseInt(z8),Color.yellow);
-        panel.addHistogramColumn("Zone 9", Integer.parseInt(z9),Color.CYAN);
+        panel.addHistogramColumn("Zone 7", Integer.parseInt(z7), Color.CYAN);
+        panel.addHistogramColumn("Zone 8", Integer.parseInt(z8), Color.yellow);
+        panel.addHistogramColumn("Zone 9", Integer.parseInt(z9), Color.CYAN);
         panel.layoutHistogram();
         panel.setBackground(Color.darkGray);
         panel.setForeground(Color.darkGray);
@@ -196,22 +210,22 @@ public class HistogramFrame extends JFrame
 
         JFrame frame = new JFrame("Histogram Panel");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add( panel );
-        frame.setLocationByPlatform( true );
+        frame.add(panel);
+        frame.setLocationByPlatform(true);
         frame.pack();
-        frame.setVisible( true );
+        frame.setVisible(true);
     }
 
     public static void main(String[] args)
     {
 
-        EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                createAndShowGUI();
-            }
-        });
+//        EventQueue.invokeLater(new Runnable()
+//        {
+//            public void run()
+//            {
+////                createAndShowGUI();
+//            }
+//        });
 
     }
 
