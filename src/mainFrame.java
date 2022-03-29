@@ -10,6 +10,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.json.*;
 
 
 public class mainFrame extends JFrame
@@ -23,12 +30,20 @@ public class mainFrame extends JFrame
     private JButton next;
     private JPanel infoPanel1;
     private JPanel infoPanel2;
-    private JSpinner numberOfPeople;
+    SpinnerModel nP = new SpinnerNumberModel(5,0,20,1);
+    private JSpinner numberOfPeople = new JSpinner(nP);
     private JToggleButton toggleLight;
     private JToggleButton toggleSound;
     private JLabel soundLabel;
     private JLabel lightLabel;
-    private JLabel logo;
+    private JPanel statsPanel;
+    private JButton Histogram;
+    private JButton xyplot;
+    private JLabel statsSlider;
+    private JLabel statsLabel;
+    int i = 0;
+    private JButton histogram;
+
 
 
     public mainFrame(String title) {
@@ -43,6 +58,7 @@ public class mainFrame extends JFrame
             public void actionPerformed(ActionEvent actionEvent) {
                 JFrame settingsFrame = new settingsFrame("settings");
                 settingsFrame.setVisible(true);
+
             }
         });
 
@@ -54,24 +70,51 @@ public class mainFrame extends JFrame
             }
         });
 
+        histogram= new JButton("Hist");
 
+        ArrayList<String> stats = new ArrayList<>();
+        stats.add("stat 1");
+        stats.add("stat 2");
+        stats.add("stat 3");
 
-
+//        statsLabel.setText(stats.get(0));
+//        statsLabel.repaint();
+//        statsLabel.validate();
 
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    infoPanel1.remove(infoPanel2);
-                    infoPanel1.repaint();
-                    infoPanel1.validate();
+
+                System.out.println(stats.get(i));
+
+                if(i!=stats.size()-1){
+                    i++;
+                }
+                else{
+                    i=0;
+                }
+                statsSlider.setText(stats.get(i));
+//                statsLabel.repaint();
+//                statsLabel.validate();
+
             }
-            });
+        });
 
         previous.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                infoPanel1.add(infoPanel2);
-                infoPanel1.repaint();
-                infoPanel1.validate();
+
+                if(i!=0){
+                    i--;
+                }
+                else{
+                    i=stats.size()-1;
+                }
+
+                statsSlider.setText(stats.get(i));
+//                statsLabel.repaint();
+//                statsLabel.validate();
+                i = (i>stats.size()-1)? 0 : i;
+
             }
         });
 
@@ -111,6 +154,12 @@ public class mainFrame extends JFrame
         });
 
 
+        Histogram.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JFrame hist = new HistogramFrame();
+            }
+        });
     }
 
 
