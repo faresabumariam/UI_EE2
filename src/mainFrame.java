@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +34,7 @@ public class mainFrame extends JFrame
     private JPanel infoPanel1;
     private JPanel infoPanel2;
     SpinnerModel nP = new SpinnerNumberModel(5,0,20,1);
-    private JSpinner numberOfPeople = new JSpinner(nP);
+    private JSpinner numberOfPeople;
     private JToggleButton toggleLight;
     private JToggleButton toggleSound;
     private JLabel soundLabel;
@@ -97,6 +99,16 @@ public class mainFrame extends JFrame
 //                statsLabel.repaint();
 //                statsLabel.validate();
 
+            }
+        });
+
+        numberOfPeople.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                numberOfPeople.setModel(nP);
+                int value = (int) numberOfPeople.getValue();
+                System.out.println(value);
+                makeGETRequest("https://studev.groept.be/api/a21ib2d04/nrofpeople_input/"+ String.valueOf(value));
             }
         });
 
