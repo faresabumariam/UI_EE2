@@ -44,19 +44,19 @@ public class settingsFrame extends JFrame {
             }
         });
 
-        slider2.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                value1 = slider2.getValue();
-                makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/" + String.valueOf(value1));
-            }
-        });
-
         slider1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                value2 = slider1.getValue();
-                makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundButton_input/" + String.valueOf(value2));
+                value1 = slider1.getValue();
+                makeGETRequest("https://studev.groept.be/api/a21ib2d04/soundButton_input/" + String.valueOf(value1));
+            }
+        });
+
+        slider2.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                value2 = slider2.getValue();
+                makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightsButton_input/" + String.valueOf(value2));
             }
         });
 

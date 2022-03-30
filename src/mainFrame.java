@@ -33,7 +33,7 @@ public class mainFrame extends JFrame
     private JButton next;
     private JPanel infoPanel1;
     private JPanel infoPanel2;
-    SpinnerModel nP = new SpinnerNumberModel(5,0,20,1);
+    SpinnerModel nP = new SpinnerNumberModel(1,1,20,1);
     private JSpinner numberOfPeople;
     private JToggleButton toggleLight;
     private JToggleButton toggleSound;
