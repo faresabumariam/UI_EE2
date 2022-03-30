@@ -45,6 +45,13 @@ public class mainFrame extends JFrame
     private JLabel statsLabel;
     int i = 0;
     private JButton histogram;
+    int time =0 ;
+    Timer t = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            time++;
+        }
+    });
 
 
 
@@ -75,9 +82,9 @@ public class mainFrame extends JFrame
         histogram= new JButton("Hist");
 
         ArrayList<String> stats = new ArrayList<>();
-        stats.add("You spend most of your time in zone: ");
-        stats.add("You saved: "+"euros");
-        stats.add("You have not left your room in: sec, touch some grass!");
+        stats.add("You spend most of your time in zone: "+ parseJSON(makeGETRequest("https://studev.groept.be/api/a21ib2d04/getMaxZone"),"zone"));
+        stats.add("You saved: "+  Integer.parseInt(parseJSON(makeGETRequest("https://studev.groept.be/api/a21ib2d04/getTime"),"time") )*0.00000088  +"euros");
+        stats.add("People in your Room? Speaker goes to center and volume is maxed");
 
 //        statsLabel.setText(stats.get(0));
 //        statsLabel.repaint();
@@ -123,8 +130,7 @@ public class mainFrame extends JFrame
                 }
 
                 statsSlider.setText(stats.get(i));
-//                statsLabel.repaint();
-//                statsLabel.validate();
+
                 i = (i>stats.size()-1)? 0 : i;
 
             }
@@ -137,12 +143,16 @@ public class mainFrame extends JFrame
                 {
                     lightLabel.setText("On");
                     makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightControl_input/"+"1" );
+                    t.start();
 
                 }
                 else
                 {
                     lightLabel.setText("Off");
                     makeGETRequest("https://studev.groept.be/api/a21ib2d04/lightControl_input/"+"0" );
+                    t.stop();
+                    System.out.println(time);
+                    makeGETRequest("https://studev.groept.be/api/a21ib2d04/inputTime/"+time);
                 }
             }
         });
@@ -206,6 +216,22 @@ public class mainFrame extends JFrame
         }
         return "";
 
+    }
+
+    public String parseJSON(String jsonString, String key){
+        String var = "";
+        try {
+            JSONArray array = new JSONArray(jsonString);
+            for (int i = 0; i < array.length(); i++)
+            {
+                JSONObject curObject = array.getJSONObject(i);
+                var+=curObject.getString(key);
+            }}
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        return var;
     }
 
     public static void main(String[] args) {

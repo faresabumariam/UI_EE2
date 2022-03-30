@@ -146,9 +146,10 @@
       </grid>
       <component id="73bdb" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <icon value="logo.jpg"/>
           <text value=""/>
         </properties>
       </component>
@@ -159,7 +160,7 @@
         <properties>
           <background color="-13091008"/>
           <foreground color="-256"/>
-          <text value="Your Zone Info"/>
+          <text value="Show Zone Info"/>
         </properties>
       </component>
       <component id="a6a4" class="javax.swing.JLabel" binding="lightLabel">
