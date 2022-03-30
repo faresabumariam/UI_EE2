@@ -92,6 +92,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             String usernameDB = makeGETRequest("https://studev.groept.be/api/a21ib2d04/check_email/"+userText+"/"+pwdText);
             System.out.println(parseJSON(usernameDB,"name"));
 
+
             if(usernameDB.charAt(1)!=']') {
                 JOptionPane.showMessageDialog(this, "Login Successful");
 
